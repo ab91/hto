@@ -1,0 +1,21 @@
+apiVersion: v1alpha
+kind: imagerunner
+sauce:
+  region: us-west-1
+  concurrency: 10
+suites:
+  # - name: java-selenium-abe-local
+  #   image: abesauce/hto-demo-java:0.0.1
+  #   resourceProfile: c3m3
+  #   workload: webdriver
+  #   entrypoint: mvn -B test -Dselenium.platform=local
+  - name: java-selenium-abe-remote
+    image: abesauce/hto-demo-java:0.0.1
+    resourceProfile: c3m3
+    workload: webdriver
+    entrypoint: mvn -B test -Dselenium.parallel=15 -Dselenium.platform=sauce
+    # env:
+    #   SAUCE_USERNAME: ${SAUCE_USERNAME}
+    #   SAUCE_ACCESS_KEY: ${SAUCE_ACCESS_KEY}
+    #   SAUCE_REGION: us-west-1
+    #   SAUCE_BUILD_TYPE: Orchestrate
